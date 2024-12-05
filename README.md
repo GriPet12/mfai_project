@@ -71,4 +71,84 @@ The goal is to figure out which applicants are at higher risk of not paying back
 4. **Scaling Numeric Features:**  
    - Standardized numerical columns using `StandardScaler` for effective model training.  
 
+
 ---
+
+## **Model Details**
+
+### **Architecture of the Neural Network**
+
+The neural network implemented in this project is a **fully connected feedforward neural network**, designed for binary classification. Its main goal is to predict whether a loan application will be approved (`loan_status = 1`) or denied (`loan_status = 0`). Below is a detailed breakdown of the model's structure:  
+
+#### **1. Input Layer**
+- **Size:** The input layer accepts a vector of size equal to the number of features in the dataset (after preprocessing).  
+- **Features:** This includes scaled numeric features (e.g., `person_income`, `loan_amnt`) and encoded categorical features (e.g., `person_home_ownership`, `loan_intent`).  
+
+#### **2. Hidden Layer**
+- **Number of Neurons:** 32 neurons.  
+- **Activation Function:** **ReLU (Rectified Linear Unit)**, defined as:  
+  ```math
+  ReLU(z) = \max(0, z)
+  ```
+  ReLU introduces non-linearity, enabling the model to learn complex patterns in the data.  
+
+#### **3. Output Layer**
+- **Number of Neurons:** 1 neuron.  
+- **Activation Function:** **Sigmoid**, defined as:  
+  ```math
+  \sigma(z) = \frac{1}{1 + e^{-z}}
+  ```
+  Sigmoid squashes the output into a range between 0 and 1, which is interpreted as the probability of loan approval.  
+
+---
+
+### **Training Process**
+
+#### **1. Forward Propagation**
+- Computes predictions by passing the input data through the layers:  
+  ```math
+  z_1 = X \cdot W_1 + b_1 \quad \text{and} \quad a_1 = ReLU(z_1)
+  ```
+  ```math
+  z_2 = a_1 \cdot W_2 + b_2 \quad \text{and} \quad \hat{y} = \sigma(z_2)
+  ```
+  Here, $ W_1, b_1, W_2, b_2 $ represent the weights and biases for the hidden and output layers.  
+
+#### **2. Loss Function**
+- The model uses **Binary Cross-Entropy Loss** to measure its performance:
+  ```math
+  \text{Loss} = -\frac{1}{m} \sum_{i=1}^{m} \left[ y_i \cdot \log(\hat{y}_i) + (1 - y_i) \cdot \log(1 - \hat{y}_i) \right]
+  ```
+  - $ y_i $: Actual label (0 or 1).  
+  - $ \hat{y}_i $: Predicted probability.  
+  - $ m $: Number of samples.  
+
+#### **3. Backward Propagation**
+- Computes gradients of the loss with respect to weights and biases.  
+- Updates weights using **Gradient Descent**:
+  ```math
+  W = W - \alpha \cdot \frac{\partial \text{Loss}}{\partial W} \quad \text{and} \quad b = b - \alpha \cdot \frac{\partial \text{Loss}}{\partial b}
+  ```
+  - $ \alpha $: Learning rate (set to 0.1 in this model).  
+
+#### **4. Iterative Optimization**
+- The model runs for 2501 iterations, printing the loss every 100 iterations to monitor training progress.  
+
+---
+
+### **Model Evaluation**
+
+After training, the model's performance is evaluated based on its predictions:  
+1. **Thresholding:** The sigmoid output $ \hat{y} $ is converted to binary predictions (0 or 1) based on a threshold of 0.5.  
+2. **Metrics:** While not explicitly implemented in the provided code, metrics such as **Accuracy**, **Precision**, **Recall**, and **F1-Score** are commonly used to assess classification performance.  
+
+---
+
+### **Advantages of This Model**
+1. **Interpretability:** A simple architecture allows for easy understanding of the learning process.  
+2. **Customizability:** The number of hidden neurons, learning rate, and iterations can be adjusted to optimize performance.  
+3. **Scalability:** The neural network can be expanded with more layers or neurons for more complex datasets.  
+
+---
+
+This neural network serves as a solid starting point for predicting loan approvals. With additional refinement and evaluation, it could be adapted for real-world financial applications.
