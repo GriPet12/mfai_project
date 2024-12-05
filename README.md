@@ -42,3 +42,33 @@
 The dataset is a about loan applications, including personal, financial, and loan details. 
 It's likely used for predicting whether a person will default on a loan, making it a binary classification problem. 
 The goal is to figure out which applicants are at higher risk of not paying back their loans based on their age, income, employment, loan purpose, credit history, and other related information.
+
+---
+
+## **Exploratory Data Analysis (EDA)**  
+1. **Numeric Columns:** Distributions and boxplots for columns like `person_age`, `person_income`, and `loan_amnt`.  
+2. **Categorical Analysis:** Frequency plots and loan default rates based on features such as `loan_intent` and `loan_grade`.  
+
+### Key Visualizations:  
+- Histograms and line plots for numeric data to identify trends.  
+- Boxplots to detect outliers in numeric features.  
+- Bar plots to observe default frequencies for categorical variables.  
+
+---
+
+## **Data Preprocessing**  
+
+1. **Removing Redundant Columns:**  
+   The `id` column was dropped as it does not contribute to prediction.  
+
+2. **Handling Missing Values:**  
+   - Checked for null and duplicate values.  
+   - Addressed missing values through imputation or removal if necessary.  
+
+3. **Encoding Categorical Variables:**  
+   - Used `LabelEncoder` to transform categorical columns into numeric formats.  
+
+4. **Scaling Numeric Features:**  
+   - Standardized numerical columns using `StandardScaler` for effective model training.  
+
+---
