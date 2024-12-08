@@ -1,6 +1,8 @@
+<!--
 <script type="text/javascript" async
   src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
 </script>
+-->
 # **MFAI Project - Loan Approval Prediction**
 **The goal for this project is to predict whether an applicant is approved for a loan.**
 
